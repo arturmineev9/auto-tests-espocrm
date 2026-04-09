@@ -7,31 +7,8 @@ using OpenQA.Selenium.Chrome;
 namespace EspoAutoTests
 {
     [TestFixture, Order(2)]
-    public class CreateContactTest
+    public class CreateContactTest : TestBase
     {
-        private IWebDriver driver;
-
-        [SetUp]
-        public void SetUp()
-        {
-            ChromeOptions options = new ChromeOptions();
-            options.AddArgument("--start-maximized");
-            options.AddArgument("--incognito");
-            options.AddArgument("--lang=en-US");
-            driver = new ChromeDriver(options);
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
-        }
-
-        [TearDown]
-        public void TearDown()
-        {
-            if (driver != null)
-            {
-                driver.Quit();
-                driver.Dispose();
-            }
-        }
-
         [Test, Order(2)]
         public void Test2_CreateContact()
         {
@@ -50,8 +27,6 @@ namespace EspoAutoTests
 
             driver.FindElement(By.CssSelector(".btn-primary")).Click();
             Thread.Sleep(2000);
-
-            Console.WriteLine("Тест 2 пройден: Контакт Artur M создан.");
         }
     }
 }

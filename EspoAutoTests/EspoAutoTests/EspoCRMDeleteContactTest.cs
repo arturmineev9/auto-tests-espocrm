@@ -7,28 +7,8 @@ using OpenQA.Selenium.Chrome;
 namespace EspoAutoTests
 {
     [TestFixture, Order(4)]
-    public class DeleteContactTest
+    public class DeleteContactTest : TestBase
     {
-        private IWebDriver driver; [SetUp]
-        public void SetUp()
-        {
-            ChromeOptions options = new ChromeOptions();
-            options.AddArgument("--start-maximized");
-            options.AddArgument("--incognito");
-            options.AddArgument("--lang=en-US");
-            driver = new ChromeDriver(options);
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
-        }
-
-        [TearDown]
-        public void TearDown()
-        {
-            if (driver != null)
-            {
-                driver.Quit();
-                driver.Dispose();
-            }
-        }
 
         [Test, Order(4)]
         public void Test4_DeleteContact()
@@ -47,8 +27,6 @@ namespace EspoAutoTests
 
             driver.FindElement(By.CssSelector(".btn-danger")).Click();
             Thread.Sleep(2000);
-
-            Console.WriteLine("Тест 4 пройден: Контакт успешно удален.");
         }
     }
 }

@@ -7,32 +7,8 @@ using OpenQA.Selenium.Chrome;
 namespace EspoAutoTests
 {
     [TestFixture, Order(3)]
-    public class EditContactTest
+    public class EditContactTest : TestBase
     {
-        private IWebDriver driver;
-
-        [SetUp]
-        public void SetUp()
-        {
-            ChromeOptions options = new ChromeOptions();
-            options.AddArgument("--start-maximized");
-            options.AddArgument("--incognito");
-            options.AddArgument("--lang=en-US");
-
-            driver = new ChromeDriver(options);
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
-        }
-
-        [TearDown]
-        public void TearDown()
-        {
-            if (driver != null)
-            {
-                driver.Quit();
-                driver.Dispose();
-            }
-        }
-
         [Test, Order(3)]
         public void Test3_EditContact()
         {
@@ -55,8 +31,6 @@ namespace EspoAutoTests
 
             driver.FindElement(By.CssSelector(".btn-primary")).Click();
             Thread.Sleep(2000);
-
-            Console.WriteLine("Тест 3 пройден: Фамилия изменена на Min.");
         }
     }
 }
