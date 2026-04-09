@@ -1,34 +1,51 @@
-using System;
-using System.Threading;
-using NUnit.Framework;
+using EspoAutoTests.data;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
 
 namespace EspoAutoTests.tests
 {
     [TestFixture, Order(3)]
     public class EditContactTest : TestBase
     {
+
         [Test, Order(3)]
         public void Test3_EditContact()
         {
-            driver.Navigate().GoToUrl("https://demo.eu.espocrm.com/");
-            driver.FindElement(By.Id("btn-login")).Click();
-            Thread.Sleep(2000);
+            ContactData newData = new ContactData("Artur") { LastName = "Min" };
 
-            driver.FindElement(By.CssSelector(".fa-id-badge")).Click();
-            Thread.Sleep(2000);
+            GoToHomePage();
+            Login();
+            GoToContactsPage();
 
+            SelectFirstContact();
+            InitContactModification();
+            ModifyContactForm(newData);
+            SubmitContactModification();
+        }
+        private void SelectFirstContact()
+        {
             driver.FindElement(By.CssSelector(".list-row:nth-child(1) .btn")).Click();
             Thread.Sleep(1000);
+        }
+
+        private void InitContactModification()
+        {
             driver.FindElement(By.LinkText("Edit")).Click();
             Thread.Sleep(2000);
+        }
 
-            IWebElement lastNameField = driver.FindElement(By.CssSelector(".col-sm-5 > .form-control"));
-            lastNameField.Clear();
-            Thread.Sleep(500);
-            lastNameField.SendKeys("Min");
+        private void ModifyContactForm(ContactData contact)
+        {
+            if (contact.LastName != null)
+            {
+                IWebElement lastNameField = driver.FindElement(By.CssSelector(".col-sm-5 > .form-control"));
+                lastNameField.Clear();
+                Thread.Sleep(500);
+                lastNameField.SendKeys(contact.LastName);
+            }
+        }
 
+        private void SubmitContactModification()
+        {
             driver.FindElement(By.CssSelector(".btn-primary")).Click();
             Thread.Sleep(2000);
         }

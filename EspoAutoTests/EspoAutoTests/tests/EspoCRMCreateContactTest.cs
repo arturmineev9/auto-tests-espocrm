@@ -1,3 +1,4 @@
+using EspoAutoTests.data;
 using OpenQA.Selenium;
 
 namespace EspoAutoTests.tests
@@ -16,24 +17,6 @@ namespace EspoAutoTests.tests
             InitContactCreation();
             FillContactForm(contact);
             SubmitContactCreation();
-        }
-
-        private void GoToHomePage()
-        {
-            driver.Manage().Cookies.DeleteAllCookies();
-            driver.Navigate().GoToUrl("https://demo.eu.espocrm.com/");
-        }
-
-        private void Login()
-        {
-            driver.FindElement(By.Id("btn-login")).Click();
-            Thread.Sleep(2000);
-        }
-
-        private void GoToContactsPage()
-        {
-            driver.FindElement(By.CssSelector(".fa-id-badge")).Click();
-            Thread.Sleep(2000);
         }
 
         private void InitContactCreation()

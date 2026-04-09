@@ -30,5 +30,23 @@ namespace EspoAutoTests
                 driver.Dispose();
             }
         }
+
+        public void GoToHomePage()
+        {
+            driver.Manage().Cookies.DeleteAllCookies();
+            driver.Navigate().GoToUrl("https://demo.eu.espocrm.com/");
+        }
+
+        public void Login()
+        {
+            driver.FindElement(By.Id("btn-login")).Click();
+            Thread.Sleep(2000);
+        }
+
+        public void GoToContactsPage()
+        {
+            driver.FindElement(By.CssSelector(".fa-id-badge")).Click();
+            Thread.Sleep(2000);
+        }
     }
 }

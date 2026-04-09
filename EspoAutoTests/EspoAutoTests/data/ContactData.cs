@@ -1,4 +1,4 @@
-﻿namespace EspoAutoTests
+﻿namespace EspoAutoTests.data
 {
     public class ContactData
     {
