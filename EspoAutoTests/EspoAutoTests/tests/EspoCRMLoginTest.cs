@@ -1,6 +1,6 @@
 ﻿using OpenQA.Selenium;
 
-namespace EspoAutoTests
+namespace EspoAutoTests.tests
 {
     [TestFixture, Order(1)]
     public class LoginTest : TestBase

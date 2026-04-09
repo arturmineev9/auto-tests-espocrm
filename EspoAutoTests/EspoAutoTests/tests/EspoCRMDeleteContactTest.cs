@@ -4,13 +4,14 @@ using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 
-namespace EspoAutoTests
+namespace EspoAutoTests.tests
 {
-    [TestFixture, Order(3)]
-    public class EditContactTest : TestBase
+    [TestFixture, Order(4)]
+    public class DeleteContactTest : TestBase
     {
-        [Test, Order(3)]
-        public void Test3_EditContact()
+
+        [Test, Order(4)]
+        public void Test4_DeleteContact()
         {
             driver.Navigate().GoToUrl("https://demo.eu.espocrm.com/");
             driver.FindElement(By.Id("btn-login")).Click();
@@ -21,15 +22,10 @@ namespace EspoAutoTests
 
             driver.FindElement(By.CssSelector(".list-row:nth-child(1) .btn")).Click();
             Thread.Sleep(1000);
-            driver.FindElement(By.LinkText("Edit")).Click();
-            Thread.Sleep(2000);
+            driver.FindElement(By.LinkText("Remove")).Click();
+            Thread.Sleep(1000);
 
-            IWebElement lastNameField = driver.FindElement(By.CssSelector(".col-sm-5 > .form-control"));
-            lastNameField.Clear();
-            Thread.Sleep(500);
-            lastNameField.SendKeys("Min");
-
-            driver.FindElement(By.CssSelector(".btn-primary")).Click();
+            driver.FindElement(By.CssSelector(".btn-danger")).Click();
             Thread.Sleep(2000);
         }
     }
