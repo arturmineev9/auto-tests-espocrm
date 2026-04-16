@@ -1,53 +1,23 @@
-using EspoAutoTests.data;
-using OpenQA.Selenium;
+using EspoAutoTests.Model;
 
-namespace EspoAutoTests.tests
+namespace EspoAutoTests.Tests
 {
     [TestFixture, Order(3)]
     public class EditContactTest : TestBase
     {
-
-        [Test, Order(3)]
+        [Test]
         public void Test3_EditContact()
         {
             ContactData newData = new ContactData("Artur") { LastName = "Min" };
 
-            GoToHomePage();
-            Login();
-            GoToContactsPage();
+            app.Navigation.GoToHomePage();
+            app.Auth.Login();
+            app.Navigation.GoToContactsPage();
 
-            SelectFirstContact();
-            InitContactModification();
-            ModifyContactForm(newData);
-            SubmitContactModification();
-        }
-        private void SelectFirstContact()
-        {
-            driver.FindElement(By.CssSelector(".list-row:nth-child(1) .btn")).Click();
-            Thread.Sleep(1000);
-        }
-
-        private void InitContactModification()
-        {
-            driver.FindElement(By.LinkText("Edit")).Click();
-            Thread.Sleep(2000);
-        }
-
-        private void ModifyContactForm(ContactData contact)
-        {
-            if (contact.LastName != null)
-            {
-                IWebElement lastNameField = driver.FindElement(By.CssSelector(".col-sm-5 > .form-control"));
-                lastNameField.Clear();
-                Thread.Sleep(500);
-                lastNameField.SendKeys(contact.LastName);
-            }
-        }
-
-        private void SubmitContactModification()
-        {
-            driver.FindElement(By.CssSelector(".btn-primary")).Click();
-            Thread.Sleep(2000);
+            app.Contact.SelectFirstContact();
+            app.Contact.InitContactModification();
+            app.Contact.ModifyContactForm(newData);
+            app.Contact.SubmitContactModification();
         }
     }
 }

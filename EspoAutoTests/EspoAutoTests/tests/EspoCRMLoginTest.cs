@@ -1,16 +1,13 @@
-﻿using OpenQA.Selenium;
-
-namespace EspoAutoTests
+﻿namespace EspoAutoTests.Tests
 {
     [TestFixture, Order(1)]
     public class LoginTest : TestBase
     {
-
         [Test]
-        public void LoginToEspoCRM()
+        public void Test1_JustLogin()
         {
-            GoToHomePage();
-            Login();
+            app.Navigation.GoToHomePage();
+            app.Auth.Login();
         }
     }
 }
