@@ -23,5 +23,12 @@ namespace EspoAutoTests
             driver.FindElement(By.CssSelector(".fa-id-badge")).Click();
             Thread.Sleep(2000);
         }
+
+        public void OpenContactProfileByText(string contactName)
+        {
+            Thread.Sleep(2000);
+            driver.FindElement(By.LinkText(contactName)).Click();
+            Thread.Sleep(2000);
+        }
     }
 }

@@ -1,5 +1,5 @@
 using EspoAutoTests.Model;
-using EspoAutoTests.Tests;
+using NUnit.Framework;
 
 namespace EspoAutoTests.Tests
 {
@@ -18,6 +18,9 @@ namespace EspoAutoTests.Tests
             app.Contact.InitContactCreation();
             app.Contact.FillContactForm(contact);
             app.Contact.SubmitContactCreation();
+
+            string realName = app.Contact.GetContactFullNameFromPage();
+            Assert.That(realName, Is.EqualTo("Artur M"));
         }
     }
 }

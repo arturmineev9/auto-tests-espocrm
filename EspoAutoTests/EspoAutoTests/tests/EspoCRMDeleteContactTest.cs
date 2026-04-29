@@ -1,5 +1,3 @@
-
-
 namespace EspoAutoTests.Tests
 {
     [TestFixture, Order(4)]

@@ -12,7 +12,9 @@ namespace EspoAutoTests
         protected LoginHelper auth;
         protected ContactHelper contact;
 
-        public AppManager()
+        private static ThreadLocal<AppManager> app = new ThreadLocal<AppManager>();
+
+        private AppManager()
         {
             ChromeOptions options = new ChromeOptions();
             options.AddArgument("--start-maximized");
@@ -28,14 +30,28 @@ namespace EspoAutoTests
             contact = new ContactHelper(this);
         }
 
-        public void Stop()
+        ~AppManager()
         {
-            if (driver != null)
+            try
             {
                 driver.Quit();
-                driver.Dispose();
+            }
+            catch (Exception)
+            {
             }
         }
+
+        public static AppManager GetInstance()
+        {
+            if (!app.IsValueCreated)
+            {
+                AppManager newInstance = new AppManager();
+                newInstance.Navigation.GoToHomePage();
+                app.Value = newInstance;
+            }
+            return app.Value;
+        }
+
         public IWebDriver Driver { get { return driver; } }
         public NavigationHelper Navigation { get { return navigation; } }
         public LoginHelper Auth { get { return auth; } }

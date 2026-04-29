@@ -69,5 +69,12 @@ namespace EspoAutoTests
             driver.FindElement(By.CssSelector(".btn-danger")).Click();
             Thread.Sleep(2000);
         }
+
+
+        public string GetContactFullNameFromPage()
+        {
+            string rawTitle = driver.FindElement(By.CssSelector(".header-title")).Text;
+            return rawTitle.Replace("Contacts", "").Replace("Контакт", "").Trim();
+        }
     }
 }
