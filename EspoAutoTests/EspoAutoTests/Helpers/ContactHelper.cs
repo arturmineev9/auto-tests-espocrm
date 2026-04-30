@@ -46,6 +46,14 @@ namespace EspoAutoTests
 
         public void ModifyContactForm(ContactData contact)
         {
+            if (contact.FirstName != null)
+            {
+                IWebElement firstNameField = driver.FindElement(By.CssSelector(".row:nth-child(1) > .col-sm-4 > .form-control"));
+                firstNameField.Clear();
+                Thread.Sleep(500);
+                firstNameField.SendKeys(contact.FirstName);
+            }
+
             if (contact.LastName != null)
             {
                 IWebElement lastNameField = driver.FindElement(By.CssSelector(".col-sm-5 > .form-control"));

@@ -2,6 +2,8 @@
 {
     public class ContactData
     {
+        public ContactData() { }
+
         public ContactData(string firstName)
         {
             FirstName = firstName;

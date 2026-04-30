@@ -8,8 +8,8 @@ namespace EspoAutoTests.Tests
         [Test]
         public void Test3_EditContact()
         {
-            ContactData newData = new ContactData("Artur") { LastName = "Min" };
-            string expectedName = "Artur Min";
+            ContactData newData = new ContactData("Edited") { LastName = "Tester" };
+            string expectedName = "Edited Tester";
 
             app.Navigation.GoToHomePage();
             app.Auth.Login();
@@ -17,6 +17,7 @@ namespace EspoAutoTests.Tests
 
             app.Contact.SelectFirstContact();
             app.Contact.InitContactModification();
+
             app.Contact.ModifyContactForm(newData);
             app.Contact.SubmitContactModification();
 

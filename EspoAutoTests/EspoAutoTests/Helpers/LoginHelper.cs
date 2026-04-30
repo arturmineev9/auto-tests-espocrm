@@ -11,6 +11,11 @@ namespace EspoAutoTests
 
         public void Login()
         {
+            if (driver.FindElements(By.Id("btn-login")).Count == 0)
+            {
+                return;
+            }
+
             driver.FindElement(By.Id("btn-login")).Click();
             Thread.Sleep(2000);
         }
