@@ -1,7 +1,7 @@
 ﻿using EspoAutoTests.Model;
 using OpenQA.Selenium;
 
-namespace EspoAutoTests
+namespace EspoAutoTests.Helpers
 {
     public class ContactHelper : HelperBase
     {

@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using EspoAutoTests.Helpers;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 
 namespace EspoAutoTests
@@ -23,7 +24,7 @@ namespace EspoAutoTests
 
             driver = new ChromeDriver(options);
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
-            baseURL = "https://demo.eu.espocrm.com/";
+            baseURL = Settings.BaseUrl;
 
             navigation = new NavigationHelper(this, baseURL);
             auth = new LoginHelper(this);

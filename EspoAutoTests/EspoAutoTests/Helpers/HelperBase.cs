@@ -1,6 +1,6 @@
 ﻿using OpenQA.Selenium;
 
-namespace EspoAutoTests
+namespace EspoAutoTests.Helpers
 {
     public class HelperBase
     {
