@@ -13,7 +13,7 @@ namespace EspoAutoTests
         protected LoginHelper auth;
         protected ContactHelper contact;
 
-        private static ThreadLocal<AppManager> app = new ThreadLocal<AppManager>();
+        private static ThreadLocal<AppManager> app = new();
 
         private AppManager()
         {
@@ -50,12 +50,28 @@ namespace EspoAutoTests
                 newInstance.Navigation.GoToHomePage();
                 app.Value = newInstance;
             }
+
             return app.Value;
         }
 
-        public IWebDriver Driver { get { return driver; } }
-        public NavigationHelper Navigation { get { return navigation; } }
-        public LoginHelper Auth { get { return auth; } }
-        public ContactHelper Contact { get { return contact; } }
+        public IWebDriver Driver
+        {
+            get { return driver; }
+        }
+
+        public NavigationHelper Navigation
+        {
+            get { return navigation; }
+        }
+
+        public LoginHelper Auth
+        {
+            get { return auth; }
+        }
+
+        public ContactHelper Contact
+        {
+            get { return contact; }
+        }
     }
 }

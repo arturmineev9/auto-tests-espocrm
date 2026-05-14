@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Windows;
+using SoundRecorderTests.Helpers;
 
 namespace SoundRecorderTests
 {
@@ -8,24 +9,44 @@ namespace SoundRecorderTests
         private WindowsDriver<WindowsElement> driver;
         public RecordHelper Record { get; private set; }
 
-        public AppManager()
+        private static ThreadLocal<AppManager> app = new();
+
+        private AppManager()
         {
             AppiumOptions options = new AppiumOptions();
-            options.AddAdditionalCapability("app", "Microsoft.WindowsSoundRecorder_8wekyb3d8bbwe!App");
+            options.AddAdditionalCapability("app", Settings.AppId);
             options.AddAdditionalCapability("deviceName", "WindowsPC");
 
-            driver = new WindowsDriver<WindowsElement>(new Uri("http://127.0.0.1:4723"), options);
+            driver = new WindowsDriver<WindowsElement>(new Uri(Settings.DriverUri), options);
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
 
-            Record = new RecordHelper(driver);
+            Record = new RecordHelper(this);
         }
 
-        public void Stop()
+        ~AppManager()
         {
-            if (driver != null)
+            try
             {
                 driver.Quit();
             }
+            catch (Exception)
+            {
+            }
+        }
+
+        public static AppManager GetInstance()
+        {
+            if (!app.IsValueCreated)
+            {
+                app.Value = new AppManager();
+            }
+
+            return app.Value;
+        }
+
+        public WindowsDriver<WindowsElement> Driver
+        {
+            get { return driver; }
         }
     }
 }
