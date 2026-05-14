@@ -1,4 +1,5 @@
 <Solution>
   <Project Path="EspoAutoTests/EspoAutoTests.csproj" />
+  <Project Path="SoundRecorderTests/SoundRecorderTests.csproj" Id="bd6e17c0-4eb1-415a-a190-349694cfa330" />
   <Project Path="TestDataGenerator/TestDataGenerator.csproj" Id="fcaf8f4a-d403-446e-aaa7-0f854b3b4809" />
 </Solution>
